@@ -204,11 +204,7 @@ func (c *ScaleProcessor) preProcess(cluster *v2.Cluster) error {
 	}
 
 	var rt runtime.Interface
-	if c.IsScaleUp {
-		rt, err = factory.New(cluster, c.ClusterFile.GetRuntimeConfig())
-	} else {
-		rt, err = factory.New(c.ClusterFile.GetCluster(), c.ClusterFile.GetRuntimeConfig())
-	}
+	rt, err = factory.New(cluster, c.ClusterFile.GetRuntimeConfig())
 	if err != nil {
 		return fmt.Errorf("failed to init runtime: %v", err)
 	}
